@@ -9,6 +9,7 @@ namespace Repository.UI
         private readonly StreamingContentRepository _repo = new StreamingContentRepository();
         public void Run()
         {
+            SeedContentList();
             RunMenu();
         }
 
@@ -20,7 +21,7 @@ namespace Repository.UI
             while (isRunning)
             {
                 //Add this later
-                // Console.Clear();
+                Console.Clear();
 
 
                 Console.WriteLine(
@@ -40,18 +41,22 @@ namespace Repository.UI
 
                     case "1":
                         //Todo Get all content
+                        ShowAllContent();
                         break;
 
                     case "2":
                         //Todo Content by title
+                        ShowContentByTitle();
                         break;
 
                     case "3":
                         //Todo add new content
+                        CreateNewContent();
                         break;
 
                     case "4":
                         //Remove content by title
+                        RemoveContentFromRepo();
                         break;
 
                     case "5":
@@ -223,7 +228,7 @@ namespace Repository.UI
             Continue();
         }
         //Update?
-        
+
 
 
         //Seed
@@ -232,6 +237,10 @@ namespace Repository.UI
             StreamingContent alien = new StreamingContent("Alien", "Deep Space Sci-Fi Horror Movie", 8.4, MaturityRating.R);
             StreamingContent theTrumanShow = new StreamingContent("The Truman Show", "The Real Reality TV", 9.3, MaturityRating.PG);
             StreamingContent insideOut = new StreamingContent("Inside Out", "Do you ever look at someone and wonder \"What is going on inside their head?\"", 8.7, MaturityRating.G);
+
+            _repo.AddContentToDirectory(alien);
+            _repo.AddContentToDirectory(theTrumanShow);
+            _repo.AddContentToDirectory(insideOut);
         }
 
 

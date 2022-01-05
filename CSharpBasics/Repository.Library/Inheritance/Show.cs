@@ -6,7 +6,7 @@ namespace Repository.Library
     {
         public Show() {}
         //show off inheritance using base constructor.
-        public Show(string title, string description, double starRating, MaturityRating maturityRating, bool isFamilyFriendly, int seasonCount, int episodeCount, int averageRunTimeInMinutes) : base(title,description,starRating,maturityRating,isFamilyFriendly)
+        public Show(string title, string description, double starRating, MaturityRating maturityRating, int seasonCount, int episodeCount, int averageRunTimeInMinutes) : base(title,description,starRating,maturityRating)
         {
             seasonCount = SeasonCount;
             episodeCount = EpisodeCount;

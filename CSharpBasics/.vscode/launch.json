@@ -12,7 +12,8 @@
             "program": "${workspaceFolder}/Repository.UI/bin/Debug/net5.0/Repository.UI.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Repository.UI",
-            "console": "internalConsole",
+            //Changed to integratedTerminal to use debugger properly
+            "console": "externalTerminal",
             "stopAtEntry": false
         },
         {
