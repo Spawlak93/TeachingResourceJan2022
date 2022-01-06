@@ -1,12 +1,19 @@
 using System;
 using System.Collections.Generic;
 using Repository.Library;
+using Repository.UI.Consoles;
 
 namespace Repository.UI
 {
     public class UserInterface
     {
+        private IConsole _console;
         private readonly StreamingContentRepository _repo = new StreamingContentRepository();
+        public UserInterface(IConsole console)
+        {
+            _console = console;
+        }
+
         public void Run()
         {
             SeedContentList();
@@ -21,10 +28,10 @@ namespace Repository.UI
             while (isRunning)
             {
                 //Add this later
-                Console.Clear();
+                _console.Clear();
 
 
-                Console.WriteLine(
+                _console.WriteLine(
                     "Enter the number of your selection:\n" +
                     "1. Show all streaming content\n" +
                     "2. Find content by title\n" +
@@ -33,7 +40,7 @@ namespace Repository.UI
                     "5. Exit"
                 );
 
-                string userInput = Console.ReadLine();
+                string userInput = _console.ReadLine();
 
                 switch (userInput)
                 {
@@ -79,20 +86,20 @@ namespace Repository.UI
         private void CreateNewContent()
         {
 
-            Console.Clear();
+            _console.Clear();
 
             StreamingContent content = new StreamingContent();
 
-            Console.Write("Please enter a title: ");
-            content.Title = Console.ReadLine();
+            _console.Write("Please enter a title: ");
+            content.Title = _console.ReadLine();
 
-            Console.Write("Please enter a description: ");
-            content.Description = Console.ReadLine();
+            _console.Write("Please enter a description: ");
+            content.Description = _console.ReadLine();
 
-            Console.Write("Please enter a rating 1-10");
-            content.StarRating = double.Parse(Console.ReadLine());
+            _console.Write("Please enter a rating 1-10");
+            content.StarRating = double.Parse(_console.ReadLine());
 
-            Console.WriteLine(
+            _console.WriteLine(
                 "Select a Maturity Rating: \n" +
                 "1. G \n" +
                 "2. PG \n" +
@@ -101,7 +108,7 @@ namespace Repository.UI
                 "5. NC-17 \n"
                 );
 
-            string maturityResponse = Console.ReadLine();
+            string maturityResponse = _console.ReadLine();
             switch (maturityResponse)
             {
                 case "1":
@@ -129,7 +136,7 @@ namespace Repository.UI
         //Get all
         private void ShowAllContent()
         {
-            Console.Clear();
+            _console.Clear();
             List<StreamingContent> listOfContent = _repo.GetContents();//could do movie/show
 
             //can print to the console the collection initally if desired.
@@ -139,14 +146,14 @@ namespace Repository.UI
                 DisplayContent(content);
 
             }
-            System.Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+            _console.WriteLine("Press any key to continue...");
+            _console.ReadKey();
         }
 
         //Helper method
         private void DisplayContent(StreamingContent content)
         {
-            Console.WriteLine(
+            _console.WriteLine(
                 $"Title: {content.Title} \n" +
                 $"Description: {content.Description}\n" +
                 $"Stars: {content.MaturityRating} \n" +
@@ -158,10 +165,10 @@ namespace Repository.UI
         //Get by title
         private void ShowContentByTitle()
         {
-            Console.Clear();
-            System.Console.WriteLine("What title are you looking for?");
+            _console.Clear();
+            _console.WriteLine("What title are you looking for?");
 
-            string targetTitle = Console.ReadLine();
+            string targetTitle = _console.ReadLine();
 
             StreamingContent content = _repo.GetContentByTitle(targetTitle);
 
@@ -171,16 +178,16 @@ namespace Repository.UI
             }
             else
             {
-                Console.WriteLine("Title not found");
+                _console.WriteLine("Title not found");
             }
 
             Continue();
         }
 
-        private static void Continue()
+        private void Continue()
         {
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+            _console.WriteLine("Press any key to continue...");
+            _console.ReadKey();
         }
 
         //At this point might want to go ahead and add a seed method for testing.
@@ -190,9 +197,9 @@ namespace Repository.UI
         {
             //Ask class what the best way of removing would be? might get suggestion for remove by title. But going to lean towards showing what we have first and then making a selection.
 
-            Console.Clear();
+            _console.Clear();
 
-            System.Console.WriteLine("Which item would you like to remove?");
+            _console.WriteLine("Which item would you like to remove?");
 
             List<StreamingContent> contentList = _repo.GetContents();
             //can add this after getting initial display up and running
@@ -201,10 +208,10 @@ namespace Repository.UI
             foreach(StreamingContent content in contentList)
             {
                 count++;
-                Console.WriteLine($"{count}. {content.Title}");
+                _console.WriteLine($"{count}. {content.Title}");
             }
 
-            int contentSelection = int.Parse(Console.ReadLine());
+            int contentSelection = int.Parse(_console.ReadLine());
             int targetIndex = contentSelection - 1;
 
             //check for valid selection(depending on time can leave as challenge)
@@ -214,17 +221,17 @@ namespace Repository.UI
 
                 if(_repo.DeleteExistingContent(targetContent))
                 {
-                    System.Console.WriteLine($"{targetContent.Title} was successfully removed");
+                    _console.WriteLine($"{targetContent.Title} was successfully removed");
                 }
                 else//If content fails to be removed.
                 {
-                    System.Console.WriteLine("Something went wrong!");
+                    _console.WriteLine("Something went wrong!");
                 }
 
             }
             else//If given invalid selection
             {
-                System.Console.WriteLine("Invalid Selction");
+                _console.WriteLine("Invalid Selction");
             }
             Continue();
         }

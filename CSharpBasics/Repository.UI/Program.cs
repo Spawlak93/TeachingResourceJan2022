@@ -1,6 +1,6 @@
 ﻿using System;
 using Repository.Library;
-
+using Repository.UI.Consoles;
 
 namespace Repository.UI
 {
@@ -8,7 +8,7 @@ namespace Repository.UI
     {
         static void Main(string[] args)
         {
-            UserInterface ui = new UserInterface();
+            UserInterface ui = new UserInterface(new RealConsole());
             ui.Run();
         }
     }

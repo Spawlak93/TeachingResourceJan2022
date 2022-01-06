@@ -9,11 +9,11 @@ namespace Repository.UI.Consoles
     {
         public string ReadLine();
 
-        public void WriteLine();
+        public void WriteLine(object o);
 
         public ConsoleKeyInfo ReadKey();
 
-        public void Write();
+        public void Write(object o);
 
         public void Clear();
     }
