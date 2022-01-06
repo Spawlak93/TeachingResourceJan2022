@@ -1,7 +1,7 @@
 namespace Repository.Library
 {
     //Introduce Enums maybe?
-    public enum MaturityRating 
+    public enum MaturityRating
     {
         G,
         PG,
@@ -12,16 +12,16 @@ namespace Repository.Library
     public class StreamingContent
     {
         //Constructors
-        public StreamingContent() {}
-        public StreamingContent(string title, string description, double starRating, MaturityRating maturityRating, bool isFamilyFriendly)
+        public StreamingContent() { }
+        public StreamingContent(string title, string description, double starRating, MaturityRating maturityRating/* bool isFamilyFriendly*/)
         {
             Title = title;
             Description = description;
             StarRating = starRating;
             MaturityRating = maturityRating;
-            IsFamilyFriendly = isFamilyFriendly;
+            // IsFamilyFriendly = isFamilyFriendly;
         }
-    
+
         //Property
         //AccessModifier Type Name Getter Setter
         public string Title { get; set; }
@@ -29,5 +29,12 @@ namespace Repository.Library
         public double StarRating { get; set; }
         public MaturityRating MaturityRating { get; set; }
         public bool IsFamilyFriendly { get; set; }
+        // public bool IsFamilyFriendly
+        // {
+        //     get
+        //     {
+        //         return (int)MaturityRating < 3;
+        //     }
+        // }
     }
 }

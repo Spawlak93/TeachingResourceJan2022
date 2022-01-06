@@ -19,7 +19,7 @@ namespace Repository.Tests
         [TestMethod]
         public void TestConstructor()
         {
-            StreamingContent content = new StreamingContent("Titanic", "The door was big enough", 9.0, MaturityRating.PG_13, true);
+            StreamingContent content = new StreamingContent("Titanic", "The door was big enough", 9.0, MaturityRating.PG_13);
 
             Assert.AreEqual("Titanic", content.Title);
         }
@@ -64,7 +64,7 @@ namespace Repository.Tests
         public void Arrange()
         {
             _repo = new StreamingContentRepository();
-            _content = new StreamingContent("Titanic", "The door was big enough", 8.2, MaturityRating.R, false);
+            _content = new StreamingContent("Titanic", "The door was big enough", 8.2, MaturityRating.R);
 
             _repo.AddContentToDirectory(_content);
         }
@@ -87,7 +87,7 @@ namespace Repository.Tests
         public void UpdateExistingContent_ShouldReturnTrue()
         {
             // Arrange
-            StreamingContent newContent = new StreamingContent("Titanic", "The door was big enough", 8.2, MaturityRating.PG_13, false);
+            StreamingContent newContent = new StreamingContent("Titanic", "The door was big enough", 8.2, MaturityRating.PG_13);
 
             // Act
             bool updateResult = _repo.UpdateExistingContent("Titanic", newContent);

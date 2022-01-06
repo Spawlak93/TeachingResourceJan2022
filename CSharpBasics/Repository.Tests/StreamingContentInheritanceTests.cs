@@ -9,7 +9,7 @@ namespace Repository.Tests
         [TestMethod]
         public void TestConstructor_ShouldStoreCorrectValues()
         {
-            Show show = new Show("Breaking Bad", "Somewher in New Mexico stuff happens", 10, MaturityRating.R, false, 7, 100, 49);
+            Show show = new Show("Breaking Bad", "Somewher in New Mexico stuff happens", 10, MaturityRating.R, 7, 100, 49);
 
             Assert.AreEqual(MaturityRating.R, show.MaturityRating);
         }
