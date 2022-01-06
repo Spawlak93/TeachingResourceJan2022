@@ -72,7 +72,7 @@ namespace Repository.UI
         //Add new
         private void CreateNewContent()
         {
-
+            
         }
         //Add Movie/Show?
 
